@@ -8,7 +8,7 @@
 
 ### Rust语言圣经
 
-学习Rust语言圣经, 有一些章节需要重点看看:
+今天学习了Rust语言圣经章节 1.1 ~ 2.7, 有一些章节需要重点看看:
 
 #### [1.6 避免从入门到放弃](https://course.rs/first-try/sth-you-should-not-do.html)
 
@@ -24,10 +24,69 @@
 
 把这些模式语法都罗列出来，方便检索查阅.
 
-#### [2.7. 方法](https://course.rs/basic/method.html)
+#### [2.7 方法](https://course.rs/basic/method.html)
 
 impl 块中可以定义方法, 关联函数.
 
 self, &self 和 &mut self 遵循 Rust 所有权规则.
 
 执行方法调用时, Rust 会自动为 object 做引用和解引用.
+
+## 20220630 Thu
+
+### Rust语言圣经
+
+今天学习了Rust语言圣经章节 2.8 ~ , 有一些章节需要重点看看:
+
+#### [2.8.1 泛型](https://course.rs/basic/trait/generic.html)
+
+Rust 1.51 引入了 const 泛型. 简单来说, 传统泛型是针对类型的泛型, 而 const 泛型是针对值的泛型.
+
+```rust
+fn display_array<T: std::fmt::Debug, const N: usize>(arr: [T; N]) {
+    println!("{:?}", arr);
+}
+```
+
+这里的T是普通泛型, N就是 const 泛型, 定义的语法是 const N: usize, 表示 const 泛型 N, 它基于的值类型是 usize.
+
+#### [2.8.3 特征对象](https://course.rs/basic/trait/trait-object.html)
+
+Box<dyn Draw> 和 &dyn Draw 的主要区别在于创特征对象的方式不同. TODO: 实现上的不同?
+
+dyn 不能单独作为特征对象的定义, 因为特征对象可以是任意实现了某个特征的类型，编译器在编译期不知道该类型的大小. 而 &dyn 和 Box<dyn> 在编译期都是已知大小，所以可以用作特征对象的定义.
+
+特征对象是动态分发的.
+
+**[特征对象的限制](https://course.rs/basic/trait/trait-object.html#%E7%89%B9%E5%BE%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E9%99%90%E5%88%B6)**
+
+对象安全:
+
+不是所有特征都能拥有特征对象，只有对象安全的特征才行。当一个特征的所有方法都有如下属性时，它的对象才是安全的：
+
+- 方法的返回类型不能是 Self
+- 方法没有任何泛型参数
+
+#### [2.8.4 进一步深入特征](https://course.rs/basic/trait/advance-trait.html)
+
+关联类型和泛型在功能上无本质区别, 主要作用是提升代码可读性. 使用泛型，导致函数头部也必须增加泛型的声明，而使用关联类型，将得到可读性好得多的代码.
+
+完全限定语法用于解决同名函数调用冲突问题:
+
+```rust
+<Type as Trait>::function(receiver_if_method, next_arg, ...);
+```
+
+可以使用 **newtype 模式**, 在外部类型上实现外部特征.
+
+```rust
+use std::fmt;
+
+struct Wrapper(Vec<String>);
+
+impl fmt::Display for Wrapper {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "[{}]", self.0.join(", "))
+    }
+}
+```
