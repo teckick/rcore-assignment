@@ -47,3 +47,5 @@
 ### Part 2
 
 TODO
+
+[stage2-sched](https://github.com/LearningOS/rust-based-os-comp2022/blob/main/stage2-sched.md)
