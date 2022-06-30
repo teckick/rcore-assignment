@@ -36,7 +36,7 @@ self, &self 和 &mut self 遵循 Rust 所有权规则.
 
 ### Rust语言圣经
 
-今天学习了Rust语言圣经章节 2.8 ~ , 有一些章节需要重点看看:
+今天学习了Rust语言圣经章节 2.8 ~ 2.11, 有一些章节需要重点看看:
 
 #### [2.8.1 泛型](https://course.rs/basic/trait/generic.html)
 
@@ -89,4 +89,23 @@ impl fmt::Display for Wrapper {
         write!(f, "[{}]", self.0.join(", "))
     }
 }
+```
+
+#### [2.10 类型转换](https://course.rs/basic/converse.html)
+
+点操作符的类型转换:
+
+- 尝试值方法调用: T::foo(value)
+- 尝试引用方法调用: <&T>::foo(value) 和 <&mut T>::foo(value)
+- 尝试解引用方法调用: T: Deref<Target = U> U::foo(value)
+- 尝试不定长转换后方法调用: [i32; 2] 转为 [i32]
+- 编译报错
+
+通过例子多练习一下. 教程给的例子还挺好的, Rust确实为提升人机工程学做了努力:
+
+以下例子, 需要对array执行索引操作, 需要array实现Index trait, 经过一系列的自动类型转换, Rc<Box<[T; 3]>> -> Box<[T; 3]> -> [T; 3] -> [T] 最终成功执行调用.
+
+```rust
+let array: Rc<Box<[T; 3]>> = ...;
+let first_entry = array[0];
 ```
