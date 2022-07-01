@@ -109,3 +109,17 @@ impl fmt::Display for Wrapper {
 let array: Rc<Box<[T; 3]>> = ...;
 let first_entry = array[0];
 ```
+
+## 20220701 Fri
+
+### Rust语言圣经
+
+继续学习Rust语言圣经, 章节 2.12 ~ 2.14, 有一些章节需要重点看看:
+
+[2.12 包和模块](https://course.rs/basic/crate-module/intro.html)
+
+Rust 包管理中的4个层级的概念: Package, Workspace, Crate, Module.
+
+Module 注意父子模块的可见性. 限制可见性语法, 细粒度控制包的可见性.
+
+推荐使用 `lib.rs` (推荐) 和 `crates.io` 查找三方包.
