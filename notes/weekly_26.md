@@ -123,3 +123,50 @@ Rust 包管理中的4个层级的概念: Package, Workspace, Crate, Module.
 Module 注意父子模块的可见性. 限制可见性语法, 细粒度控制包的可见性.
 
 推荐使用 `lib.rs` (推荐) 和 `crates.io` 查找三方包.
+
+### Rustlings
+
+练习 Rustlings, 进度 30/84 .
+
+#### move_semantics3.rs
+
+为什么 `let vec0 = Vec::new();` 不需要改成 `let mut`?
+
+## 20220702 Sat
+
+### Rust语言圣经
+
+继续学习Rust语言圣经, 章节 3.1 ~ , 有一些章节需要重点看看:
+
+
+#### [3.1.1 认识生命周期](https://course.rs/advance/lifetime/basic.html)
+
+生命周期 'a 不代表生命周期等于 'a，而是大于等于 'a. 在通过函数签名指定生命周期参数时，我们并没有改变传入引用或者返回引用的真实生命周期，而是告诉编译器当不满足此约束条件时，就拒绝编译通过.
+
+生命周期的三条消除规则:
+
+- 每一个引用参数都会获得独自的生命周期
+- 若只有一个输入生命周期(函数参数中只有一个引用类型), 那么该生命周期会被赋给所有的输出生命周期.
+- 若存在多个输入生命周期，且其中一个是 &self 或 &mut self，则 &self 的生命周期被赋给所有的输出生命周期.
+
+#### [3.1.3 &'static 和 T: 'static](https://course.rs/advance/lifetime/static.html)
+
+&'static 生命周期针对的仅仅是引用，而不是持有该引用的变量，对于变量来说，还是要遵循相应的作用域规则.
+
+&'static 含义是: 引用指向的数据和程序生命周期一样长.
+
+声明 `T: 'static`, 而在参数中却经常使用 `&T`.
+
+```rust
+use std::fmt::Debug;
+
+fn print_it<T: Debug + 'static>( input: &T) {
+    println!( "'static value passed in is: {:?}", input );
+}
+
+fn main() {
+    let i = 5;
+
+    print_it(&i);
+}
+```
