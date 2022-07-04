@@ -10,7 +10,8 @@
 
 ## 学习记录
 
-- [Weekly 26](notes/weekly_26.md)
+- [Weekly 26 (2022/06/29 ~ 2022/07/03)](notes/weekly_26.md)
+- [Weekly 27 (2022/07/04 ~ 2022/07/10)](notes/weekly_27.md)
 
 ## To-Do List
 
