@@ -19,7 +19,7 @@
 
 #### step 0 自学rust编程（大约7~14天）
 
-- [ ] [Small exercises to get you used to reading and writing Rust code!](https://github.com/rust-lang/rustlings)
+- [ ] [Small exercises to get you used to reading and writing Rust code!](https://github.com/LearningOS/learn_rust_rustlings-eastfisher)
   - [ ] 要求：小练习全部通过。
   - [ ] 代码和README提交在自己在github的公开repo上。
 - [ ] [32 Rust Quizes](https://dtolnay.github.io/rust-quiz/1)
