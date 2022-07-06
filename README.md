@@ -19,9 +19,9 @@
 
 #### step 0 自学rust编程（大约7~14天）
 
-- [ ] [Small exercises to get you used to reading and writing Rust code!](https://github.com/LearningOS/learn_rust_rustlings-eastfisher)
-  - [ ] 要求：小练习全部通过。
-  - [ ] 代码和README提交在自己在github的公开repo上。
+- [x] [Small exercises to get you used to reading and writing Rust code!](https://github.com/LearningOS/learn_rust_rustlings-eastfisher)
+  - [x] 要求：小练习全部通过。
+  - [x] 代码和README提交在自己在github的公开repo上。
 - [ ] [32 Rust Quizes](https://dtolnay.github.io/rust-quiz/1)
   - [ ] 要求：小练习全部通过。
 - [ ] [exercisms.io 快速练习(88+道题目的中文详细描述)](http://llever.com/exercism-rust-zh/index.html)
@@ -32,7 +32,7 @@
 - [ ] 阅读《计算机组成与设计（RISC-V版）》第一、二章
 - [ ] 自学[PPT for RISC-V特权指令级架构](https://content.riscv.org/wp-content/uploads/2018/05/riscv-privileged-BCN.v7-2.pdf)
 - [ ] 自学[RISC-V手册：一本开源指令集的指南](http://crva.io/documents/RISC-V-Reader-Chinese-v2p1.pdf) 重点是第10章
-- [ ] 自学[RIS-V特权指令级规范](https://riscv.org/specifications/privileged-isa/) 重点是与OS相关的特权硬件访问的内容
+- [ ] 自学[RISC-V特权指令级规范](https://riscv.org/specifications/privileged-isa/) 重点是与OS相关的特权硬件访问的内容
 - [ ] [计算机组成与设计：RISC-V 教材](https://item.jd.com/12887758.html) 这是完整的课程教材，不要求全部看完，请根据自己的需求选择。
 - [ ] [计算机组成与设计：RISC-V 浙大在线课程](http://www.icourse163.org/course/ZJU-1452997167) 这是完整的一门课，不要求全部看完，请根据自己的需求选择。
 - [ ] [Berkeley CS61C: Great Ideas in Computer Architecture (Machine Structures)](http://www-inst.eecs.berkeley.edu/~cs61c/sp18/)
