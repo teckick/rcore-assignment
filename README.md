@@ -10,8 +10,14 @@
 
 ## 学习记录
 
+### Weekly
+
 - [Weekly 26 (2022-06-29 ~ 2022-07-03)](notes/weekly_26.md)
 - [Weekly 27 (2022-07-04 ~ 2022-07-10)](notes/weekly_27.md)
+
+### Blogs
+
+- [在 macOS 用 Vagrant 搭建实验环境](notes/setup_env_in_vagrant.md)
 
 ## To-Do List
 
