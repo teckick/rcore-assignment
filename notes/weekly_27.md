@@ -186,3 +186,15 @@ https://doc.rust-lang.org/reference/macros-by-example.html#the-macro_use-attribu
 ### 计算机组成与设计（RISC-V版）
 
 学习完第1章.
+
+## 20220707 Thu
+
+### os-comp2022
+
+#### [第零章 实验环境配置](https://learningos.github.io/rust-based-os-comp2022/0setup-devel-env.html)
+
+在 macOS 环境下安装了 vagrant 并使用 ubuntu 18.04 镜像作为实验环境.
+
+总结一个环境搭建文档: [使用 vagrant 搭建实验环境](setup_env_in_vagrant.md)
+
+经过简单的配置后, 执行 `make run` 能够看到期望输出.
