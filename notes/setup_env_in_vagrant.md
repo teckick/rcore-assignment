@@ -48,7 +48,7 @@ config.vm.synced_folder "/Users/eastfisher/workspace", "/home/vagrant/workspace"
 
 ## Tips
 
-整个过程唯一可能遇到的问题是虚拟机fq, 如果你的macOS有proxy, 可以执行 `ifconfig` 找到IP, 然后在虚拟机里面配置 proxy 相关的环境变量.
+整个过程唯一可能遇到的问题是虚拟机网络被墙, 如果你的 macOS 有 proxy, 可以执行 `ifconfig` 命令找到IP, 然后在虚拟机里面配置 proxy 相关的环境变量. 没有的话就只能用国内镜像源了.
 
 ```bash
 # 宿主机
