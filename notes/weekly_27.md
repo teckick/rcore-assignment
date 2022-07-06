@@ -41,11 +41,7 @@ let s1: Box<str> = "Hello there!".into();
 
 由上可知，若类型 T 的引用&T是Send，则T是Sync。
 
-<<<<<<< HEAD
-## 20220704 Tue
-=======
 ## 20220705 Tue
->>>>>>> origin
 
 ### Rust语言圣经
 
