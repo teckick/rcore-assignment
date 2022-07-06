@@ -41,7 +41,11 @@ let s1: Box<str> = "Hello there!".into();
 
 由上可知，若类型 T 的引用&T是Send，则T是Sync。
 
+<<<<<<< HEAD
 ## 20220704 Tue
+=======
+## 20220705 Tue
+>>>>>>> origin
 
 ### Rust语言圣经
 
@@ -67,7 +71,7 @@ let s1: Box<str> = "Hello there!".into();
 
 ### Rustlings
 
-练习 Rustlings, 进度 ??/84 .
+练习 Rustlings, 进度 63/84 .
 
 #### error4.rs
 
@@ -84,6 +88,38 @@ https://stackoverflow.com/questions/40677086/why-isnt-it-possible-to-compare-a-b
 > You interpret the error correctly, and the reason is that it simply isn't implemented. If the standard library writers wanted to make this work, they'd have to implement PartialEq for &i32 == i32, i32 == &i32, &mut i32 == i32, i32 == &mut i32, &i32 == &mut i32 and &mut i32 == &i32. And then they'd have to do that for all other primitive types (i8, i16, u8, u16, u32, i64, u64, f32, f64, and char).
 
 这里遇到的问题是, &i64 与字面量 0 比较时, 0 需要写成 `&(0 as i64)`.
+
+#### option2.rs
+
+```rust
+    ......
+
+    let mut optional_integers_vec: Vec<Option<i8>> = Vec::new();
+    for x in 1..10 {
+        optional_integers_vec.push(Some(x));
+    }
+    
+    // TODO: make this a while let statement - remember that vector.pop also adds another layer of Option<T>
+    // You can stack `Option<T>`'s into while let and if let
+    while let Some(integer) = optional_integers_vec.pop().flatten() { // 这里pop之后是Option<Option<i8>>, 需要Option::flatten()变成Option<i8>
+        println!("current value: {}", integer);
+    }
+```
+
+#### option3.rs
+
+```rust
+    let y: Option<Point> = Some(Point { x: 100, y: 200 });
+
+    match y {
+        // 把这里改成 Some(ref p) 就能通过编译了
+        Some(ref p) => println!("Co-ordinates are {},{} ", p.x, p.y),
+        _ => println!("no match"),
+    }
+    y; // Fix without deleting this line.
+```
+
+使用ref绑定时, 将对应的值(y)的引用绑定到p上, 这样不会转移y的所有权到p.
 
 ## 20220706 Wed
 
