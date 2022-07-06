@@ -84,3 +84,73 @@ https://stackoverflow.com/questions/40677086/why-isnt-it-possible-to-compare-a-b
 > You interpret the error correctly, and the reason is that it simply isn't implemented. If the standard library writers wanted to make this work, they'd have to implement PartialEq for &i32 == i32, i32 == &i32, &mut i32 == i32, i32 == &mut i32, &i32 == &mut i32 and &mut i32 == &i32. And then they'd have to do that for all other primitive types (i8, i16, u8, u16, u32, i64, u64, f32, f64, and char).
 
 这里遇到的问题是, &i64 与字面量 0 比较时, 0 需要写成 `&(0 as i64)`.
+
+## 20220706 Wed
+
+### Rustlings
+
+练习 Rustlings, 进度 84/84, 已完成.
+
+```markdown
+🎉 All exercises completed! 🎉
+
++----------------------------------------------------+
+|          You made it to the Fe-nish line!          |
++--------------------------  ------------------------+
+                          \\/
+     ▒▒          ▒▒▒▒▒▒▒▒      ▒▒▒▒▒▒▒▒          ▒▒
+   ▒▒▒▒  ▒▒    ▒▒        ▒▒  ▒▒        ▒▒    ▒▒  ▒▒▒▒
+   ▒▒▒▒  ▒▒  ▒▒            ▒▒            ▒▒  ▒▒  ▒▒▒▒
+ ░░▒▒▒▒░░▒▒  ▒▒            ▒▒            ▒▒  ▒▒░░▒▒▒▒
+   ▓▓▓▓▓▓▓▓  ▓▓      ▓▓██  ▓▓  ▓▓██      ▓▓  ▓▓▓▓▓▓▓▓
+     ▒▒▒▒    ▒▒      ████  ▒▒  ████      ▒▒░░  ▒▒▒▒
+       ▒▒  ▒▒▒▒▒▒        ▒▒▒▒▒▒        ▒▒▒▒▒▒  ▒▒
+         ▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▓▓▒▒▓▓▒▒▒▒▒▒▒▒
+           ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+             ▒▒▒▒▒▒▒▒▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒▒▒
+           ▒▒  ▒▒▒▒▒▒▒▒▒▒██████▒▒▒▒▒▒▒▒▒▒  ▒▒
+         ▒▒    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒    ▒▒
+       ▒▒    ▒▒    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒    ▒▒    ▒▒
+       ▒▒  ▒▒    ▒▒                  ▒▒    ▒▒  ▒▒
+           ▒▒  ▒▒                      ▒▒  ▒▒
+
+We hope you enjoyed learning about the various aspects of Rust!
+```
+
+#### iterators1.rs
+
+avocado 是牛油果.
+
+#### iterators3.rs
+
+神奇的 collect() 可以根据返回值类型自动转换成对应的类型.
+
+```rust
+// Complete the function and return a value of the correct type so the test passes.
+// Desired output: Ok([1, 11, 1426, 3])
+fn result_with_list() -> Result<Vec<i32>, DivisionError> {
+    let numbers = vec![27, 297, 38502, 81];
+    numbers.into_iter().map(|n| divide(n, 27)).collect()
+}
+
+// Complete the function and return a value of the correct type so the test passes.
+// Desired output: [Ok(1), Ok(11), Ok(1426), Ok(3)]
+fn list_of_results() -> Vec<Result<i32, DivisionError>> {
+    let numbers = vec![27, 297, 38502, 81];
+    numbers.into_iter().map(|n| divide(n, 27)).collect()
+}
+```
+
+#### macros3.rs
+
+这个 exercise 给出了在同一模块内定义 macro 又不依赖 macro 位置的最佳实践: 使用 `#[macro_use]` 属性宏.
+
+https://doc.rust-lang.org/reference/macros-by-example.html#the-macro_use-attribute
+
+#### conversions
+
+这一部分做起来都比较吃力, 还需要再花时间系统梳理一下相关概念.
+
+### 计算机组成与设计（RISC-V版）
+
+学习完第1章.
