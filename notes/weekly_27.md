@@ -189,12 +189,39 @@ https://doc.rust-lang.org/reference/macros-by-example.html#the-macro_use-attribu
 
 ## 20220707 Thu
 
-### os-comp2022
+### rCore实验
 
-#### [第零章 实验环境配置](https://learningos.github.io/rust-based-os-comp2022/0setup-devel-env.html)
+#### [第零章：实验环境配置](https://learningos.github.io/rust-based-os-comp2022/0setup-devel-env.html)
 
 在 macOS 环境下安装了 vagrant 并使用 ubuntu 18.04 镜像作为实验环境.
 
 总结一个环境搭建文档: [使用 vagrant 搭建实验环境](setup_env_in_vagrant.md)
 
 经过简单的配置后, 执行 `make run` 能够看到期望输出.
+
+#### [第一章：应用程序与基本执行环境](https://learningos.github.io/rust-based-os-comp2022/chapter1/index.html)
+
+一些关键词:
+
+- RustSBI: SBI 是 RISC-V 的一种底层规范，RustSBI 是它的一种实现。 操作系统内核与 RustSBI 的关系有点像应用与操作系统内核的关系，后者向前者提供一定的服务。只是SBI提供的服务很少， 比如关机，显示字符串等。
+- no_mangle宏: 对于带有 `#[no_mangle]` 属性的函数，rust 编译器不会为它进行函数名混淆, 使其能够被 `cffi` 正常调用.
+- ELF:
+- 交叉编译: 编译器运行平台与可执行文件运行平台不同.
+- bare-metal:
+
+目标平台三元组: 指目标平台的 `CPU指令集`, `操作系统类型` 和 `标准运行时库`. 例如:
+
+`x86_64-unknown-linux-gnu`, 表示CPU 架构是 x86_64，CPU 厂商是 unknown，操作系统是 linux，运行时库是 gnu libc.
+
+而这次实验的目标是让 `println!` 在 `riscv64gc-unknown-none-elf` 上面成功运行.
+
+命令行工具:
+
+- rust-readobj: 查看文件头信息
+- rust-objdump: 反汇编导出汇编程序
+
+QEMU有两种运行模式: `User mode` 和 `System mode`. (TODO: 这里没太明白, 为什么最小程序要跑在 User Mode?)
+
+##### 构建裸机执行环境
+
+应用程序访问操作系统提供的系统调用的指令是 `ecall` ，操作系统访问 RustSBI提供的SBI调用的指令也是 `ecall` ， 虽然指令一样，但它们所在的特权级是不一样的。 简单地说，应用程序位于最弱的用户特权级（User Mode）， 操作系统位于内核特权级（Supervisor Mode）， RustSBI位于机器特权级（Machine Mode）。
