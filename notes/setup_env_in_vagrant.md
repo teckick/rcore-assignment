@@ -46,6 +46,20 @@ config.vm.synced_folder "/Users/eastfisher/workspace", "/home/vagrant/workspace"
 
 所有相关软件安装完成后, 在 os1 目录下 `make run` , 应该是不会报错的.
 
+我们还使用 vscode 通过 ssh 连接到远程 vagrant 虚拟机, 而不能通过 `vagrant ssh` 命令去连接. 执行以下命令进行配置:
+
+```bash
+# vagrant 目录
+# 执行这个命令后, 会自动创建一个 private_key, 路径是:
+# .vagrant/machines/default/virtualbox/private_key
+$ vagrant ssh-config
+$ ssh-add ~/.vagrant/machines/default/virtualbox/private_key
+# 这一步能连上说明 ssh 配置正确了
+$ ssh -p2222 vagrant@127.0.0.1
+```
+
+配置完成后, 再按照 [vscode remote ssh 配置说明](https://code.visualstudio.com/docs/remote/ssh) 通过 vscode 连接.
+
 ## Tips
 
 整个过程唯一可能遇到的问题是虚拟机网络被墙, 如果你的 macOS 有 proxy, 可以执行 `ifconfig` 命令找到IP, 然后在虚拟机里面配置 proxy 相关的环境变量. 没有的话就只能用国内镜像源了.
