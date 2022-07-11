@@ -1,6 +1,6 @@
 # Weekly 27
 
-## 20220704 Mon
+## 2022-07-04 Mon
 
 ### 搭建实验环境
 
@@ -41,7 +41,7 @@ let s1: Box<str> = "Hello there!".into();
 
 由上可知，若类型 T 的引用&T是Send，则T是Sync。
 
-## 20220705 Tue
+## 2022-07-05 Tue
 
 ### Rust语言圣经
 
@@ -117,7 +117,7 @@ https://stackoverflow.com/questions/40677086/why-isnt-it-possible-to-compare-a-b
 
 使用ref绑定时, 将对应的值(y)的引用绑定到p上, 这样不会转移y的所有权到p.
 
-## 20220706 Wed
+## 2022-07-06 Wed
 
 ### Rustlings
 
@@ -187,7 +187,7 @@ https://doc.rust-lang.org/reference/macros-by-example.html#the-macro_use-attribu
 
 学习完第1章.
 
-## 20220707 Thu
+## 2022-07-07 Thu
 
 ### rCore实验
 

@@ -4,7 +4,7 @@
 
 [用RUST进行系统编程的自学资源](https://github.com/rcore-os/rCore/wiki/study-resource-of-system-programming-in-RUST) 提供了多条高效学习Rust的路线, 结合自身情况, 决定选择 方案二 进行学习, 辅助教材使用 [Programming Rust 2nd](https://www.oreilly.com/library/view/programming-rust-2nd/9781492052586/).
 
-## 20220629 Wed
+## 2022-06-29 Wed
 
 ### Rust语言圣经
 
@@ -32,7 +32,7 @@ self, &self 和 &mut self 遵循 Rust 所有权规则.
 
 执行方法调用时, Rust 会自动为 object 做引用和解引用.
 
-## 20220630 Thu
+## 2022-06-30 Thu
 
 ### Rust语言圣经
 
@@ -110,7 +110,7 @@ let array: Rc<Box<[T; 3]>> = ...;
 let first_entry = array[0];
 ```
 
-## 20220701 Fri
+## 2022-07-01 Fri
 
 ### Rust语言圣经
 
@@ -132,7 +132,7 @@ Module 注意父子模块的可见性. 限制可见性语法, 细粒度控制包
 
 为什么 `let vec0 = Vec::new();` 不需要改成 `let mut`?
 
-## 20220702 Sat
+## 2022-07-02 Sat
 
 ### Rust语言圣经
 
