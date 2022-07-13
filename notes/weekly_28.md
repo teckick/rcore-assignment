@@ -63,3 +63,90 @@ RISC-V的特权指令相关:
 
 用户栈与内核栈: 使用两个不同的栈主要是为了安全性. (这个是操作系统的一个设计, 并不是强制要求)
 
+## 2022-07-13 Wed
+
+### [rCore实验 第一章](https://learningos.github.io/rust-based-os-comp2022/chapter1/index.html)
+
+把实验跑通. 修复了几个 `make test2` 相关的编译问题.
+
+- `asm!` 需要改为 `core::arch::asm!`
+- 在 riscv/src/lib.rs 添加 `#![feature(asm_const)]`.
+
+```
+error[E0658]: const operands for inline assembly are unstable
+  --> /home/vagrant/workspaces/eastfisher/rust-based-os-comp2022/workplace/ci-user/riscv/src/register/macros.rs:12:72
+   |
+12 |                     core::arch::asm!("csrrs {0}, {1}, x0", out(reg) r, const $csr_number);
+   |                                                                        ^^^^^^^^^^^^^^^^^
+   |
+  ::: /home/vagrant/workspaces/eastfisher/rust-based-os-comp2022/workplace/ci-user/riscv/src/register/hypervisorx64/vstvec.rs:41:1
+   |
+41 | read_csr_as!(Vstvec, 517, __read_vstvec);
+   | ---------------------------------------- in this macro invocation
+   |
+   = note: see issue #93332 <https://github.com/rust-lang/rust/issues/93332> for more information
+   = help: add `#![feature(asm_const)]` to the crate attributes to enable
+   = note: this error originates in the macro `read_csr` (in Nightly builds, run with -Z macro-backtrace for more info)
+```
+
+### [rCore实验 第三章](https://learningos.github.io/rust-based-os-comp2022/chapter3/index.html)
+
+#### 引言
+
+> 批处理与多道程序的区别是什么？支持多道程序的系统可以交错地执行多个程序，这样系统的利用率会更高。
+
+**Question: 为什么系统利用率会更高? 是因为可能涉及不占用CPU的IO操作吗?**
+
+Answer: 当程序访问 I/O 外设或睡眠时，其实是不需要占用处理器的，于是我们可以把应用程序在不同时间段的执行过程分为两类，占用处理器执行有效任务的计算阶段和不必占用处理器的等待阶段
+
+---
+
+本章的重点是实现对应用之间的协作式和抢占式任务切换的操作系统支持。与上一章的操作系统实现相比，有如下一些不同的情况导致实现上也有差异：
+
+- 多个应用同时放在内存中，所以他们的起始地址是不同的，且地址范围不能重叠
+- 应用在整个执行过程中会暂停或被抢占，即会有主动或被动的任务切换
+
+#### 多道程序放置与加载
+
+在 `ci-user/user/build.py` 里面, 对 chapter3 的每个app会设置不同的 base_address:
+
+```python
+base_address = 0x80400000
+step = 0x20000
+app_id = 0
+
+for app in apps:
+    app = app[: app.find(".")]
+    os.system(
+        "cargo rustc --bin %s --release -- -Clink-args=-Ttext=%x"
+        % (app, base_address + step * app_id)
+    )
+    print(
+        "[build.py] application %s start with address %s"
+        % (app, hex(base_address + step * app_id))
+    )
+    # 仅对 chapter3 生效, 使每个应用的 base_address 偏移 0x20000
+    if chapter == '3':
+        app_id = app_id + 1
+```
+
+#### 任务切换
+
+关键概念: **任务, 任务切换, 任务上下文**
+
+- 应用程序: 静态的应用
+- 任务: 应用程序的一次执行过程 (动态)
+- 任务片: 应用执行过程中的一个时间片段. 当应用程序的所有任务片都完成后，应用程序的一次任务也就完成了.
+- 任务切换: 从一个程序的任务切换到另外一个程序的任务
+- 任务上下文: 任务切换过程中需要保存与恢复的资源 (有被覆盖风险的那些资源)
+
+---
+
+不同的上下文切换:
+
+- 普通控制流切换 (函数调用)
+- Trap控制流切换
+- 任务切换
+
+重点: **`__switch` 函数** -> 任务切换的设计与实现
+
