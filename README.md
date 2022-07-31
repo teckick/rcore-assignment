@@ -8,6 +8,16 @@
 
 课程目标: 探索把现代系统语言Rust和灵活开放的系统结构RISC-V带入到操作系统的架构与设计的创新中来，思考未来的操作系统应该是什么样。
 
+## 第一阶段完成情况
+
+- [x] [rustlings](https://github.com/LearningOS/learn_rust_rustlings-eastfisher)
+- [x] [lab1](https://github.com/LearningOS/lab1-os3-eastfisher)
+- [x] [lab2](https://github.com/LearningOS/lab2-os4-eastfisher)
+- [ ] [lab3](https://github.com/LearningOS/lab3-os5-eastfisher)
+- [ ] [lab4](https://github.com/LearningOS/lab4-os6-eastfisher)
+- [ ] [lab5](https://github.com/LearningOS/lab5-os8-eastfisher)
+- [x] [实验总结报告](notes/report_part1.md)
+
 ## 学习记录
 
 ### Weekly
