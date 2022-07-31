@@ -14,8 +14,9 @@
 
 - [Weekly 26 (2022-06-29 ~ 2022-07-03)](notes/weekly_26.md)
 - [Weekly 27 (2022-07-04 ~ 2022-07-10)](notes/weekly_27.md)
-- [Weekly 28 (2022-07-11 ~ 2022-07-18)](notes/weekly_28.md)
-- [Weekly 29 (2022-07-19 ~ 2022-07-26)](notes/weekly_29.md)
+- [Weekly 28 (2022-07-11 ~ 2022-07-17)](notes/weekly_28.md)
+- [Weekly 29 (2022-07-18 ~ 2022-07-24)](notes/weekly_29.md)
+- [Weekly 30 (2022-07-25 ~ 2022-07-31)](notes/weekly_30.md)
 
 ### Blogs
 
